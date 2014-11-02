@@ -29,11 +29,13 @@ Scenegraph::~Scenegraph()
         delete root;
         root = NULL;
     }
-
+	// UNCOMMENT WHEN READY
+	/*
 	for (map<string,Texture *>::iterator it=textures.begin();it!=textures.end();it++)
 	{
 		delete it->second;
 	}
+	*/
 }
 
 void Scenegraph::initShaderProgram(GLint shaderProgram)

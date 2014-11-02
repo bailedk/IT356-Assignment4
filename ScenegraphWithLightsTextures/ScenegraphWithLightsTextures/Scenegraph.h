@@ -55,11 +55,14 @@ public:
 		}
 	}
 
+
+	// UNCOMMENT WHEN READY
+	/*
 	Texture *getTexture(string name)
 	{
 		cout << "Texture " << name << " looked up" << endl;
 	}
-
+	*/
 private:
     Node *root;
 	vector<Object *> instances;
