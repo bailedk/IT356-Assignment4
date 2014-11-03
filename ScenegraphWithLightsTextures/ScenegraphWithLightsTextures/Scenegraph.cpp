@@ -43,9 +43,12 @@ Scenegraph::~Scenegraph()
 
 void Scenegraph::initShaderProgram(GLint shaderProgram)
 {
+	// hacky way to get this
+	programCopy = shaderProgram;
+
 	modelviewLocation = glGetUniformLocation(shaderProgram,"modelview");
 	objectColorLocation = glGetUniformLocation(shaderProgram,"vColor");
-	/*
+	
    
 	normalMatrixLocation = glGetUniformLocation(shaderProgram,"normalmatrix");
 	numLightsLocation = glGetUniformLocation(shaderProgram,"numLights");
@@ -55,7 +58,7 @@ void Scenegraph::initShaderProgram(GLint shaderProgram)
 	mat_diffuseLocation = glGetUniformLocation(shaderProgram,"material.diffuse");
 	mat_specularLocation = glGetUniformLocation(shaderProgram,"material.specular");
 	mat_shininessLocation = glGetUniformLocation(shaderProgram,"material.shininess");
-	*/
+	
 }
 
 void Scenegraph::draw(stack<glm::mat4>& modelView)
@@ -70,36 +73,36 @@ void Scenegraph::draw(stack<glm::mat4>& modelView)
 		root->updateBB();
 		root->drawBB(modelView);
 		getLights(modelView);
-		cout<<"Lights Size: "<<lights.size()<<endl;
-		/*
+		//cout<<"Lights Size: "<<lights.size()<<endl;
+		//cout << "program : " << programCopy << endl;
 		for (int i=0;i<lights.size();i++)
 		{
 			stringstream name;
 
 			name << "light[" << i << "].ambient";
 
-			lightLocation[i].ambientLocation = glGetUniformLocation(program,name.str().c_str());
+			lightLocation[i].ambientLocation = glGetUniformLocation(programCopy,name.str().c_str());
 
 			name.clear();//clear any bits set
 			name.str(std::string());
 
 			name << "light[" << i << "].diffuse";
 
-			lightLocation[i].diffuseLocation = glGetUniformLocation(program,name.str().c_str());
+			lightLocation[i].diffuseLocation = glGetUniformLocation(programCopy,name.str().c_str());
 
 			name.clear();//clear any bits set
 			name.str(std::string());
 
 			name << "light[" << i << "].specular";
 
-			lightLocation[i].specularLocation = glGetUniformLocation(program,name.str().c_str());
+			lightLocation[i].specularLocation = glGetUniformLocation(programCopy,name.str().c_str());
 
 			name.clear();//clear any bits set
 			name.str(std::string());
 
 			name << "light[" << i << "].position";
 
-			lightLocation[i].positionLocation = glGetUniformLocation(program,name.str().c_str());
+			lightLocation[i].positionLocation = glGetUniformLocation(programCopy,name.str().c_str());
 
 			name.clear();//clear any bits set
 			name.str(std::string());
@@ -110,7 +113,7 @@ void Scenegraph::draw(stack<glm::mat4>& modelView)
 			glUniform4fv(lightLocation[i].positionLocation,1,glm::value_ptr(lights[i].getPosition()));
 
 		}
-		*/
+		
 
 
 	}

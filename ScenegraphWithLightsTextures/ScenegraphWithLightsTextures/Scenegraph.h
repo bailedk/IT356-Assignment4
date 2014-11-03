@@ -81,6 +81,8 @@ private:
 		mat_diffuseLocation,mat_specularLocation,mat_shininessLocation;
 	void getLights(stack<glm::mat4>& modelView);
 	LightLocation lightLocation[3];
+
+	GLuint programCopy;
 };
 
 #endif // SCENEGRAPH_H
