@@ -9,10 +9,10 @@ layout(location=2) in vec4 texcoord;
 uniform mat4 projection;
 uniform mat4 modelview;
 uniform mat4 normalmatrix;
-uniform mat4 texturematrix;
+/*uniform mat4 texturematrix;*/
 out vec3 fNormal;
 out vec4 fPosition;
-out vec4 fTexCoord;
+/*out vec4 fTexCoord;*/
 
 void main()
 {
@@ -28,6 +28,6 @@ void main()
     vec4 tNormal = normalmatrix * vNormal;
     fNormal = normalize(tNormal.xyz);
 
-    fTexCoord = texturematrix * texcoord;
+    /*fTexCoord = texturematrix * texcoord;*/
 
 }
