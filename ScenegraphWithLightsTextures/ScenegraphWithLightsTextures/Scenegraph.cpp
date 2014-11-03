@@ -75,6 +75,13 @@ void Scenegraph::draw(stack<glm::mat4>& modelView)
 		getLights(modelView);
 		//cout<<"Lights Size: "<<lights.size()<<endl;
 		//cout << "program : " << programCopy << endl;
+
+		cout << "position light 0" << endl;
+		//glm::vec4 pos = lights[0].getPosition();
+		//cout << pos[0] << " " << pos[1] << " " << pos[2] << " " << pos[3] << endl;
+				
+		glUniform1i(numLightsLocation,lights.size());
+
 		for (int i=0;i<lights.size();i++)
 		{
 			stringstream name;
@@ -110,11 +117,19 @@ void Scenegraph::draw(stack<glm::mat4>& modelView)
 			glUniform3fv(lightLocation[i].ambientLocation,1,glm::value_ptr(lights[i].getAmbient()));
 			glUniform3fv(lightLocation[i].diffuseLocation,1,glm::value_ptr(lights[i].getDiffuse()));
 			glUniform3fv(lightLocation[i].specularLocation,1,glm::value_ptr(lights[i].getSpecular()));
+
 			glUniform4fv(lightLocation[i].positionLocation,1,glm::value_ptr(lights[i].getPosition()));
 
-		}
-		
+			/*
+			glm::vec4 pos = lights[0].getPosition();
+			pos[0] = -100;
+			pos[1] = 0;
+			pos[2] = 0;
+			cout << pos[0] << " " << pos[1] << " " << pos[2] << " " << pos[3] << endl;
+			*/
+			//glUniform4fv(lightLocation[i].positionLocation,1,glm::value_ptr(pos));
 
+		}
 
 	}
 }
