@@ -3,9 +3,11 @@
 
 #include <GL/gl.h>
 #include <vector>
+#include <stack>
 using namespace std;
 #include "Node.h"
 #include <glm/gtc/matrix_transform.hpp>
+#include "Light.h"
 
 
 class GroupNode: public Node
@@ -117,6 +119,19 @@ public:
 			}
 		}
 	}
+	virtual void getLights(vector<Light>& l, stack<glm::mat4>& modelView){
+		
+		for(int i =0; i<children.size(); i++){
+			children[i]->getLights(l, modelView);
+		}
+		
+		for(int i =0; i<lights.size();i++){
+			Light light = lights[i];
+			light.setPosition(glm::vec3(modelView.top()*light.getPosition()));
+			l.push_back(light);
+		}
+		
+	}
 
     void addChild(Node *child)
     {
@@ -128,6 +143,8 @@ public:
     {
         return children;
     }
+
+	
 };
 
 #endif // GROUP_H

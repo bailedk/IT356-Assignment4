@@ -99,6 +99,8 @@ void View::draw()
 	modelview.top() = modelview.top() * glm::lookAt(glm::vec3(0,0,80),glm::vec3(0,0,0),glm::vec3(0,1,0)) * trackballTransform;
 
 	glUniformMatrix4fv(projectionLocation,1,GL_FALSE,glm::value_ptr(proj.top()));
+
+
 	/*
      *Instead of directly supplying the modelview matrix to the shader here, we pass it to the objects
      *This is because the object's transform will be multiplied to it before it is sent to the shader

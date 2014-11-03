@@ -5,6 +5,7 @@
 #include <stack>
 #include <vector>
 #include <iostream>
+#include <string>
 using namespace std;
 #include <glm/glm.hpp>
 #include <GL/glew.h>
@@ -12,6 +13,15 @@ using namespace std;
 #include "Object.h"
 #include "Node.h"
 #include "Texture.h"
+#include "Light.h"
+
+typedef struct
+    {
+        GLint positionLocation;
+        GLint ambientLocation;
+        GLint diffuseLocation;
+        GLint specularLocation;
+    } LightLocation;
 
 class Scenegraph
 {    
@@ -66,7 +76,11 @@ public:
 private:
     Node *root;
 	vector<Object *> instances;
-	GLint objectColorLocation,modelviewLocation;
+	vector<Light> lights;
+	GLint objectColorLocation,modelviewLocation,normalMatrixLocation,numLightsLocation,mat_ambientLocation,
+		mat_diffuseLocation,mat_specularLocation,mat_shininessLocation;
+	void getLights(stack<glm::mat4>& modelView);
+	LightLocation lightLocation[3];
 };
 
 #endif // SCENEGRAPH_H

@@ -47,6 +47,7 @@ public:
 	virtual void drawBB(stack<glm::mat4>& modelView)=0;
 	virtual void updateBB()=0;
 	virtual Node *clone()=0;
+	virtual void getLights(vector<Light>& l,stack<glm::mat4>& modelView)=0;
 	void setParent(Node *parent)
 	{
 		this->parent = parent;
@@ -77,6 +78,7 @@ public:
 		cout << "Light added in node " << name << endl;
 		lights.push_back(l);
 	}
+	
 
 protected:
 	Node *parent;

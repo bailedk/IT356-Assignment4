@@ -3,8 +3,10 @@
 #include "node.h"
 #include "Object.h"
 #include "Material.h"
+#include <stack>
 #include <glm/gtc/matrix_transform.hpp>
 #include "Texture.h"
+#include "Light.h"
 
 
 class LeafNode : public Node
@@ -72,6 +74,15 @@ public:
 		minBounds = instanceOf->getMinimumWorldBounds().xyz();
 		maxBounds = instanceOf->getMaximumWorldBounds().xyz();
 	}
+	virtual void getLights(vector<Light>& l, stack<glm::mat4>& modelView){
+	
+		for(int i =0; i<lights.size();i++){
+			Light light = lights[i];
+			light.setPosition(glm::vec3(modelView.top()*light.getPosition()));
+			l.push_back(light);
+		}
+		
+	}
 
 	glm::vec4 getColor()
 	{
@@ -98,7 +109,7 @@ public:
 	{
 		cout << "Texture set to " << tex->getName() << endl;
 	}
-
+	
 protected:
 	Object *instanceOf;
 	Material material;

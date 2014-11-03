@@ -5,7 +5,9 @@
 #include "Node.h"
 #define GLM_SWIZZLE
 #include <glm/glm.hpp>
+#include <stack>
 #include <glm/gtc/matrix_transform.hpp>
+#include "Light.h"
 
 
 class TransformNode : public Node
@@ -151,6 +153,17 @@ public:
 		}
 	}
 
+	virtual void getLights(vector<Light>& l, stack<glm::mat4>& modelView){
+		
+		child->getLights(l, modelView);
+		for(int i =0; i<lights.size();i++){
+			Light light = lights[i];
+			light.setPosition(glm::vec3(modelView.top()*animation_transform*light.getPosition()));
+			l.push_back(light);
+		}
+		
+	}
+
 	void setTransform(glm::mat4 obj)
     {
         transform = obj;
@@ -170,6 +183,7 @@ public:
     {
         return animation_transform;
     }
+	
 
 protected:
 	glm::mat4 transform,animation_transform;
