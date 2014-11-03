@@ -114,13 +114,13 @@ public:
 		//VertexData starts with position, so starting byte is 0
 		glVertexAttribPointer(vPosition,4,GL_FLOAT,GL_FALSE,sizeof(VertexAttribs),BUFFER_OFFSET(0));
 		//In VertexData, normal follows the position (4 floats), so start reading normals from 4*sizeof(float)
-	//	glVertexAttribPointer(vNormal,4,GL_FLOAT,GL_FALSE,sizeof(VertexAttribs),BUFFER_OFFSET(sizeof(glm::vec4)));
+		glVertexAttribPointer(vNormal,4,GL_FLOAT,GL_FALSE,sizeof(VertexAttribs),BUFFER_OFFSET(sizeof(glm::vec4)));
 		//In VertexData, texture coordinates follow the position and normal (8 floats), so start reading texture coordinates from 8*sizeof(float)
 	//    glVertexAttribPointer(vTexCoord,2,GL_FLOAT,GL_FALSE,sizeof(VertexAttribs),BUFFER_OFFSET(8*sizeof(float)));
 
 		//enable the vertex attribute arrays
 		glEnableVertexAttribArray(vPosition);
-	//	glEnableVertexAttribArray(vNormal);
+		glEnableVertexAttribArray(vNormal);
 	//    glEnableVertexAttribArray(vTexCoord);
 
 		/*

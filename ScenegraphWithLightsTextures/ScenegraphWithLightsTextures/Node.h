@@ -18,6 +18,8 @@ protected:
     Scenegraph *scenegraph;
 	bool bbDraw;
 	glm::vec3 minBounds,maxBounds;
+	vector<Light> lights;
+	
 public:
     Node(Scenegraph *graph,string name="")
     {
@@ -73,6 +75,7 @@ public:
 	void addLight(const Light& l)
 	{
 		cout << "Light added in node " << name << endl;
+		lights.push_back(l);
 	}
 
 protected:
