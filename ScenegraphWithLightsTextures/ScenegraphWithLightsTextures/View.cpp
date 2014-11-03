@@ -62,8 +62,8 @@ void View::initialize()
     //populate our shader information. The two files below are present in this project.
     ShaderInfo shaders[] =
     {
-        {GL_VERTEX_SHADER,"triangles.vert"},
-        {GL_FRAGMENT_SHADER,"triangles.frag"},
+        {GL_VERTEX_SHADER,"phong-multiple.vert"},
+        {GL_FRAGMENT_SHADER,"phong-multiple.frag"},
         {GL_NONE,""} //used to detect the end of this array
     };
 
