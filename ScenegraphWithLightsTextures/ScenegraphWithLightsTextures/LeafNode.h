@@ -45,7 +45,15 @@ public:
             glm::vec4 color = material.getAmbient();
 
             //set the color for all vertices to be drawn for this object
-            glUniform3fv(scenegraph->objectColorLocation,1,glm::value_ptr(color));
+            //glUniform3fv(scenegraph->objectColorLocation,1,glm::value_ptr(color));
+
+			
+			glUniform3fv(scenegraph->mat_ambientLocation,1,glm::value_ptr(material.getAmbient()));
+			glUniform3fv(scenegraph->mat_diffuseLocation,1,glm::value_ptr(material.getDiffuse()));
+			glUniform3fv(scenegraph->mat_specularLocation,1,glm::value_ptr(material.getSpecular()));
+			glUniform1f(scenegraph->mat_shininessLocation,material.getShininess());
+
+
 			a = glGetError();
 			glUniformMatrix4fv(scenegraph->modelviewLocation,1,GL_FALSE,glm::value_ptr(modelView.top()));
 			a = glGetError();

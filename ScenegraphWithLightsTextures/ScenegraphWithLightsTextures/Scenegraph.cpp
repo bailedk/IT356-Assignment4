@@ -53,7 +53,7 @@ void Scenegraph::initShaderProgram(GLint shaderProgram)
 	normalMatrixLocation = glGetUniformLocation(shaderProgram,"normalmatrix");
 	numLightsLocation = glGetUniformLocation(shaderProgram,"numLights");
 
-
+	
 	mat_ambientLocation = glGetUniformLocation(shaderProgram,"material.ambient");
 	mat_diffuseLocation = glGetUniformLocation(shaderProgram,"material.diffuse");
 	mat_specularLocation = glGetUniformLocation(shaderProgram,"material.specular");
@@ -76,7 +76,7 @@ void Scenegraph::draw(stack<glm::mat4>& modelView)
 		//cout<<"Lights Size: "<<lights.size()<<endl;
 		//cout << "program : " << programCopy << endl;
 
-		cout << "position light 0" << endl;
+		//cout << "position light 0" << endl;
 		//glm::vec4 pos = lights[0].getPosition();
 		//cout << pos[0] << " " << pos[1] << " " << pos[2] << " " << pos[3] << endl;
 				
@@ -117,7 +117,6 @@ void Scenegraph::draw(stack<glm::mat4>& modelView)
 			glUniform3fv(lightLocation[i].ambientLocation,1,glm::value_ptr(lights[i].getAmbient()));
 			glUniform3fv(lightLocation[i].diffuseLocation,1,glm::value_ptr(lights[i].getDiffuse()));
 			glUniform3fv(lightLocation[i].specularLocation,1,glm::value_ptr(lights[i].getSpecular()));
-
 			glUniform4fv(lightLocation[i].positionLocation,1,glm::value_ptr(lights[i].getPosition()));
 
 			/*
@@ -128,9 +127,8 @@ void Scenegraph::draw(stack<glm::mat4>& modelView)
 			cout << pos[0] << " " << pos[1] << " " << pos[2] << " " << pos[3] << endl;
 			*/
 			//glUniform4fv(lightLocation[i].positionLocation,1,glm::value_ptr(pos));
-
+		
 		}
-
 	}
 }
 
