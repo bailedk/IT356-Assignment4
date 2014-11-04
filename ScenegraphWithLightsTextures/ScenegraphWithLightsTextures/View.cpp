@@ -113,7 +113,7 @@ void View::draw()
      *of the shader itself.
      */
 	a = glGetError();
-    glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
+    glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
     sgraph.draw(modelview);
 	a = glGetError();
     glFinish();
