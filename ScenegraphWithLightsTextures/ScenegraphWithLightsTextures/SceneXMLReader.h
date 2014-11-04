@@ -326,10 +326,8 @@ private:
 			name = node->first_attribute("texture")->value();
 			//attach texture
 
-			// UNCOMMENT WHEN READY
-			/*
-			tex = sgraph->getTexture(name);
-			*/
+			// UNCOMMENT LATER
+			// tex = sgraph->getTexture(name);
 		}
 
 		Object *obj = sgraph->getInstance(instanceOf);
@@ -571,7 +569,7 @@ private:
 	{
 		Light l;
 
-		for (rapidxml::xml_node<> *light_prop = light_node->first_node(NULL);light_prop!=NULL;light_prop = light_prop->next_sibling())
+		for (rapidxml::xml_node<> *light_prop = light_node;light_prop!=NULL;light_prop = light_prop->next_sibling())
 		{
 			if (strcmp(light_prop->name(),"ambient")==0)
 			{
