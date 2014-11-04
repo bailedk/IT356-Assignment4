@@ -1,0 +1,273 @@
+<scene>
+	<instance name="sphere" path="models/sphere" />
+	<instance name="box" path="models/box" />
+	<instance name="cylinder" path="models/cylinder" />
+	<instance name="cone" path="models/cone" />
+	
+<transform  BB="true" name="cabin">
+	<set>
+	</set>
+		<light>
+		<ambient>0.8 0.8 0.8</ambient>
+		<diffuse>0.8 0.8 0.8</diffuse>
+		<specular>0.8 0.8 0.8</specular>
+		<position>100 100 100 </position>
+		<direction>0 1 0 </direction>
+		<spotangle>90</spotangle>
+		<spotdirection>1 0 0 </spotdirection>
+	</light> 
+
+	<group BB="true">
+			<light>
+		<ambient>0.8 0.8 0.8</ambient>
+		<diffuse>0.8 0.8 0.8</diffuse>
+		<specular>0.8 0.8 0.8</specular>
+		<position>100 100 100 </position>
+		<direction>0 1 0 </direction>
+		<spotangle>90</spotangle>
+		<spotdirection>1 0 0 </spotdirection>
+	</light> 
+	
+		<transform name = "chairtrans1" >
+				<light>
+		<ambient>0.8 0.8 0.8</ambient>
+		<diffuse>0.8 0.8 0.8</diffuse>
+		<specular>0.8 0.8 0.8</specular>
+		<position>100 100 100 </position>
+		<direction>0 1 0 </direction>
+		<spotangle>90</spotangle>
+		<spotdirection>1 0 0 </spotdirection>
+	</light> 
+			<set>
+				<rotate>135 0 1 0</rotate>
+				<translate>40 0 40</translate>
+			</set>
+			<group>
+				<transform name="chair0" >
+					<set>
+						<translate>-10 0 0 </translate>
+					</set>
+					<group name="chair">
+						<transform name="back">
+							<set>
+								<scale> 5 20 20 </scale>
+							</set>
+							<object instanceof="box">
+								<material>
+									<color> 1 0 0 </color>
+								</material>                    
+							</object>
+						</transform>
+						<transform name="seat">
+							<set>
+								<scale> 20 5 20 </scale>        
+								<translate>10 -10 0</translate>
+							</set>
+							<object instanceof="box">
+								<material>
+									<color> 1 1 1</color>
+								</material>
+							</object>
+						</transform>
+						
+						<transform name="post">
+							<set>
+								<scale> 3 15 3 </scale>
+								<translate> 10 -25 0 </translate>
+							</set>
+							<object instanceof="cylinder">
+								<material>
+									<color> 0 0 1 </color>
+								</material>                    
+							</object>
+						</transform>
+					</group>
+				</transform>
+			</group>
+		</transform>
+		
+		<transform>
+			<set>
+				<rotate>-135 0 1 0</rotate>
+				<translate>40 0 -40 </translate>
+			</set>
+			<group>
+				<transform name="chair1">
+					<set>
+						<translate>-10 0 0 </translate>
+					</set>
+					<group name="chair">
+						<transform name="back">
+							<set>
+								<scale> 5 20 20 </scale>
+							</set>
+							<object instanceof="box">
+								<material>
+									<color> 1 0 0 </color>
+								</material>                    
+							</object>
+						</transform>
+						<transform name="seat">
+							<set>
+								<scale> 20 5 20 </scale>        
+								<translate>10 -10 0</translate>
+							</set>
+							<object instanceof="box">
+								<material>
+									<color> 1 1 1</color>
+								</material>
+							</object>
+						</transform>
+						<transform name="post">
+							<set>
+								<scale> 3 15 3 </scale>
+								<translate> 10 -25 0 </translate>
+							</set>
+							<object instanceof="cylinder" BB="true">
+								<material>
+									<color> 0 0 1 </color>
+								</material>                    
+							</object>
+						</transform>
+					</group>
+				</transform>
+			</group>
+		</transform>
+		
+		<transform>
+			<set>
+				<rotate>-45 0 1 0</rotate>
+				<translate>-40 0 -40 </translate>
+			</set>
+			<group>
+				<transform name="chair2">
+					<set>
+						<translate>-10 0 0 </translate>
+					</set>
+					<group name="chair">
+						<transform name="back">
+							<set>
+								<scale> 5 20 20 </scale>
+							</set>
+							<object instanceof="box">
+								<material>
+									<color> 1 0 0 </color>
+								</material>                    
+							</object>
+						</transform>
+						<transform name="seat">
+							<set>
+								<scale> 20 5 20 </scale>        
+								<translate>10 -10 0</translate>
+							</set>
+							<object instanceof="box">
+								<material>
+									<color> 1 1 1</color>
+								</material>
+							</object>
+						</transform>
+						<transform name="post">
+							<set>
+								<scale> 3 15 3 </scale>
+								<translate> 10 -25 0 </translate>
+							</set>
+							<object instanceof="cylinder">
+								<material>
+									<color> 0 0 1 </color>
+								</material>                    
+							</object>
+						</transform>
+					</group>
+				</transform>
+			</group>
+		</transform>
+		
+		<transform>
+			<set>
+				<rotate>45 0 1 0</rotate>
+				<translate>-40 0 40 </translate>
+			</set>
+			<group>
+				<transform name="chair3" BB="true">
+					<set>
+						<translate>-10 0 0 </translate>
+					</set>
+					<group name="chair" BB="true">
+						<transform name="back">
+							<set>
+								<scale> 5 20 20 </scale>
+							</set>
+							<object instanceof="box">
+								<material>
+									<color> 1 0 0 </color>
+								</material>                    
+							</object>
+						</transform>
+						<transform name="seat">
+							<set>
+								<scale> 20 5 20 </scale>        
+								<translate>10 -10 0</translate>
+							</set>
+							<object instanceof="box">
+								<material>
+									<color> 1 1 1</color>
+								</material>
+							</object>
+						</transform>
+						<transform name="post">
+							<set>
+								<scale> 3 15 3 </scale>
+								<translate> 10 -25 0 </translate>
+							</set>
+							<object instanceof="cylinder">
+								<material>
+									<color> 0 0 1 </color>
+								</material>                    
+							</object>
+						</transform>
+					</group>
+				</transform>
+			</group>
+		</transform>
+		
+		<transform name="platform" BB="true">
+			<set>
+				<translate>0 -30 0</translate>
+			</set>
+			<group name="ride">
+				<transform name="surface">
+					<set>
+						<scale> 75 5 75 </scale>
+					</set>
+					<object instanceof="cylinder" BB="true">
+						<material>
+							<color> 0 1 0 </color>
+						</material>                    
+					</object>
+				</transform>
+			</group>
+		</transform>
+		
+		
+		<transform>
+			<set>
+
+			</set>
+
+			<transform>
+				<set>
+					<scale> 10 100 10</scale>
+					<translate>0 25 0</translate>
+				</set>
+				<object instanceof="box">
+					<material>
+						<color> 0 1 0 </color>
+					</material>                    
+				</object>
+			</transform>
+
+		</transform>
+
+	</group>
+</transform>
+</scene>
