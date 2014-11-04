@@ -127,7 +127,7 @@ public:
 		
 		for(int i =0; i<lights.size();i++){
 			Light light = lights[i];
-			light.setPosition(glm::vec3(modelView.top()*light.getPosition()));
+			light.setPosition(glm::vec3(modelView.top()*lights[i].getPosition()));
 			l.push_back(light);
 		}
 		

@@ -42,11 +42,12 @@ public:
         if (instanceOf!=NULL)
 		{
 			 //get the color
-            glm::vec4 color = material.getAmbient();
+           // glm::vec4 color = material.getAmbient();
 
             //set the color for all vertices to be drawn for this object
             //glUniform3fv(scenegraph->objectColorLocation,1,glm::value_ptr(color));
-
+			glUniformMatrix4fv(scenegraph->modelviewLocation,1,GL_FALSE,glm::value_ptr(modelView.top()));
+			glUniformMatrix4fv(scenegraph->normalMatrixLocation,1,GL_FALSE,glm::value_ptr(glm::transpose(glm::inverse(modelView.top()))));
 			
 			glUniform3fv(scenegraph->mat_ambientLocation,1,glm::value_ptr(material.getAmbient()));
 			glUniform3fv(scenegraph->mat_diffuseLocation,1,glm::value_ptr(material.getDiffuse()));
@@ -54,8 +55,7 @@ public:
 			glUniform1f(scenegraph->mat_shininessLocation,material.getShininess());
 
 
-			a = glGetError();
-			glUniformMatrix4fv(scenegraph->modelviewLocation,1,GL_FALSE,glm::value_ptr(modelView.top()));
+			
 			a = glGetError();
 			instanceOf->draw();        
 			a = glGetError();
@@ -86,7 +86,9 @@ public:
 	
 		for(int i =0; i<lights.size();i++){
 			Light light = lights[i];
-			light.setPosition(glm::vec3(modelView.top()*light.getPosition()));
+			glm::vec4 newPos= lights[i].getPosition();
+			cout<<"new pos: "<<newPos.x<<" "<<newPos.y<<" "<<newPos.z<<" "<<newPos.w<<" "<<endl;
+			light.setPosition(glm::vec3(modelView.top()*lights[i].getPosition()));
 			l.push_back(light);
 		}
 		

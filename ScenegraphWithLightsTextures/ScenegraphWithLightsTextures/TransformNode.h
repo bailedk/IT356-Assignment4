@@ -7,6 +7,7 @@
 #include <glm/glm.hpp>
 #include <stack>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include "Light.h"
 
 
@@ -158,7 +159,10 @@ public:
 		child->getLights(l, modelView);
 		for(int i =0; i<lights.size();i++){
 			Light light = lights[i];
-			light.setPosition(glm::vec3(modelView.top()*animation_transform*light.getPosition()));
+			
+
+
+			light.setPosition(glm::vec3(modelView.top() * transform * animation_transform * lights[i].getPosition()));
 			l.push_back(light);
 		}
 		

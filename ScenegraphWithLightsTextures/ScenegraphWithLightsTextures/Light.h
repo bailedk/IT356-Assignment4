@@ -22,6 +22,7 @@ public:
     void setDiffuse(glm::vec3 color);
     void setSpecular(glm::vec3 color);
     void setPosition(glm::vec3 pos);
+	void setPosition(glm::vec4 pos);
     void setDirection(glm::vec3 dir);
 	void setSpotDirection(glm::vec3 spotdir);
 

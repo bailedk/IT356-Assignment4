@@ -606,6 +606,7 @@ private:
 
 				s >> pos[0] >> pos[1] >> pos[2];
 				l.setPosition(pos);
+				glm::vec4 test = l.getPosition();
 			}
 			else if (strcmp(light_prop->name(),"direction")==0)
 			{
