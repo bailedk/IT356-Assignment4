@@ -68,6 +68,7 @@ public:
 			glUniform1f(scenegraph->mat_shininessLocation,material.getShininess());
 
 			if(texture != NULL) {
+
 				glUniformMatrix4fv(scenegraph->texturematrixLocation,1,GL_FALSE,glm::value_ptr(glm::mat4(1.0f)));
 				glEnable(GL_TEXTURE_2D);
 				glActiveTexture(GL_TEXTURE0);
@@ -89,6 +90,7 @@ public:
 	{
 		if (bbDraw)
 		{
+			glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 			glm::mat4 bbTransform;
 
 			bbTransform = glm::translate(glm::mat4(1.0),0.5f*(minBounds+maxBounds)) * glm::scale(glm::mat4(1.0),maxBounds-minBounds);
@@ -96,7 +98,8 @@ public:
 			//set the color for all vertices to be drawn for this object
 			glUniform3fv(scenegraph->objectColorLocation,1,glm::value_ptr(color));
 			glUniformMatrix4fv(scenegraph->modelviewLocation,1,GL_FALSE,glm::value_ptr(modelView.top() * bbTransform));
-			scenegraph->getInstance("box")->draw();        		
+			scenegraph->getInstance("box")->draw();  
+			glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 		}
 
 		// experiment to show where light is
