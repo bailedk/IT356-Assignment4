@@ -65,9 +65,7 @@ public:
 			glUniform1f(scenegraph->mat_shininessLocation,material.getShininess());
 
 			if(texture!=NULL){
-				glUniformMatrix4fv(scenegraph->texturematrixLocation,1,GL_FALSE,glm::value_ptr(modelView.top()));
-
-
+				glUniformMatrix4fv(scenegraph->texturematrixLocation,1,GL_FALSE,glm::value_ptr(glm::mat4(1.0f)));
 				glEnable(GL_TEXTURE_2D);
 				glActiveTexture(GL_TEXTURE0);
 				glBindTexture(GL_TEXTURE_2D,texture->getTextureID());
