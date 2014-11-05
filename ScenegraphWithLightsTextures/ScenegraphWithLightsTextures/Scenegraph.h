@@ -83,6 +83,11 @@ private:
 	LightLocation lightLocation[3];
 
 	GLuint programCopy;
+	TransformNode * cabin;
+	TransformNode * chair0;
+	TransformNode * chair1;
+	TransformNode * chair2;
+	TransformNode * chair3;
 };
 
 #endif // SCENEGRAPH_H

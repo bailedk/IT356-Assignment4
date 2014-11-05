@@ -3,21 +3,20 @@
 	<instance name="box" path="models/box" />
 	<instance name="cylinder" path="models/cylinder" />
 	<instance name="cone" path="models/cone" />
-	
-<transform  name="cabin">
+	<!--
+	<light>
+	<ambient>1.0 1.0 1.0</ambient>
+	<diffuse>0.8 0.8 0.8</diffuse>
+	<specular>0.8 0.8 0.8</specular>
+	<position>0 100 0</position>
+	<spotangle>90</spotangle>
+	<spotdirection>1 0 0 </spotdirection>
+	</light> 
+	-->
+	<transform  name="cabin">
 	<set>
-		<scale>0.8 0.8 0.8</scale>
+		<scale>1.0 1.0 1.0</scale>
 	</set>
-		<light>
-		<ambient>0.8 0.8 0.8</ambient>
-		<diffuse>0.8 0.8 0.8</diffuse>
-		<specular>0.8 0.8 0.8</specular>
-		<position>100 0 0</position>
-		<direction>0 1 0 </direction>
-		<spotangle>90</spotangle>
-		<spotdirection>1 0 0 </spotdirection>
-		</light> 
-
 	<group >
 
 		<transform name = "chairtrans1" >
@@ -25,17 +24,27 @@
 				<rotate>135 0 1 0</rotate>
 				<translate>40 0 40</translate>
 			</set>
+
 			<group>
 				<transform name="chair0" >
 					<set>
 						<translate>-10 0 0 </translate>
 					</set>
+						<light>
+	<ambient>1.0 1.0 1.0</ambient>
+	<diffuse>0.8 0.8 0.8</diffuse>
+	<specular>0.8 0.8 0.8</specular>
+	<position>0 0 0</position>
+	<!-- <direction>0 1 0 </direction> -->
+	<spotangle>90</spotangle>
+	<spotdirection>1 0 0 </spotdirection>
+	</light> 
 					<group name="chair">
 						<transform name="back">
 							<set>
 								<scale> 5 20 20 </scale>
 							</set>
-							<object instanceof="box">
+							<object instanceof="sphere">
 								<material>
 									<ambient>.4 .5 .6</ambient>
 									<diffuse>.5 .5 .5</diffuse>
@@ -250,9 +259,17 @@
 					<scale> 10 100 10</scale>
 					<translate>0 25 0</translate>
 				</set>
-				<object instanceof="box">
+				<object instanceof="sphere">
 					<material>
-						<color> 0 1 0 </color>
+						<ambient>0.9 .1 .1</ambient>
+						<diffuse>.5 .5 .5</diffuse>
+						<specular>.3 .3 .3</specular>
+						<shininess>50</shininess>
+						<!--the following four will be relevant in ray tracer -->
+						<absorption>0.5 </absorption>
+						<reflection>0.1</reflection>
+						<transparency>0.4</transparency>
+						<refractive>1.2</refractive>
 					</material>                    
 				</object>
 			</transform>
@@ -261,8 +278,7 @@
 
 	</group>
 </transform>
-
-
+<!--
 	<transform>
 		<set>
 			<scale>2 2 2 </scale>
@@ -304,11 +320,6 @@
 									<diffuse>.5 .5 .5</diffuse>
 									<specular>.3 .3 .3</specular>
 									<shininess>0</shininess>
-									<!--the following four will be relevant in ray tracer -->
-									<absorption>0.5 </absorption>
-									<reflection>0.1</reflection>
-									<transparency>0.4</transparency>
-									<refractive>1.2</refractive>
 								</material>
 							</object>
 						</transform>
@@ -338,7 +349,7 @@
 											<group name="poleAssembly">
 												<transform>
 													<set>
-														<!-- Transform pole -->
+	
 														<scale>1 20 1 </scale>
 													</set>
 													<object instanceof="cylinder">
@@ -349,7 +360,7 @@
 												</transform>
 												<transform name="chair1">
 													<set>
-														<!-- Transform Chair 1 -->
+		
 														<rotate>90 0 0 1</rotate>
 														<translate>0 20.5 0</translate>
 														<rotate>-90 0 1 0</rotate>
@@ -359,7 +370,6 @@
 													<group name="chair">
 														<transform name="chair1back">
 															<set>
-																<!-- Transform Chair 1 Back -->
 																<scale>1 5 4</scale> 
 															</set>
 															<object instanceof="box">
@@ -426,6 +436,5 @@
 			</group>
 		</group>
 	</transform>
-
-
+-->
 </scene>

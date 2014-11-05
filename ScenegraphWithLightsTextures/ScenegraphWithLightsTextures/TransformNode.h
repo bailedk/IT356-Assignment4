@@ -155,16 +155,16 @@ public:
 	}
 
 	virtual void getLights(vector<Light>& l, stack<glm::mat4>& modelView){
-		
+		modelView.push(modelView.top());
+        modelView.top() = modelView.top() * animation_transform * transform;
 		child->getLights(l, modelView);
 		for(int i =0; i<lights.size();i++){
 			Light light = lights[i];
 			
-
-
-			light.setPosition(glm::vec3(modelView.top() * transform * animation_transform * lights[i].getPosition()));
+			light.setPosition(glm::vec3(modelView.top() * lights[i].getPosition()));
 			l.push_back(light);
 		}
+		 modelView.pop();
 		
 	}
 

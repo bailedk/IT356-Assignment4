@@ -18,10 +18,18 @@ public:
 	{
 		this->instanceOf = instanceOf;
 		//default material
-		material.setAmbient(1.0f,0.6f,0.6f);
-		material.setDiffuse(1.0f,0.6f,0.6f);
-		material.setSpecular(0.2f,0.1f,0.1f);
-		material.setShininess(1);
+		
+		material.setAmbient(1.0f,0.8f,0.8f);
+		material.setDiffuse(0.8f,0.8f,0.8f);
+		material.setSpecular(0.8f,0.8f,0.8f);
+		material.setShininess(50.0f);
+		
+		/*
+		material.setAmbient(0.1f,0.025f,0.025f);
+		material.setDiffuse(0.8f,0.2f,0.2f);
+		material.setSpecular(0.8f,0.2f,0.2f);
+		material.setShininess(50.0f);
+		*/
 	}
 
 	~LeafNode(void)
@@ -75,6 +83,11 @@ public:
 			glUniformMatrix4fv(scenegraph->modelviewLocation,1,GL_FALSE,glm::value_ptr(modelView.top() * bbTransform));
 			scenegraph->getInstance("box")->draw();        		
 		}
+
+		// experiment to show where light is
+		//glm::mat4 bbTransform;
+
+
 	}
 	
 	virtual void updateBB()
@@ -87,7 +100,7 @@ public:
 		for(int i =0; i<lights.size();i++){
 			Light light = lights[i];
 			glm::vec4 newPos= lights[i].getPosition();
-			cout<<"new pos: "<<newPos.x<<" "<<newPos.y<<" "<<newPos.z<<" "<<newPos.w<<" "<<endl;
+			//cout<<"new pos: "<<newPos.x<<" "<<newPos.y<<" "<<newPos.z<<" "<<newPos.w<<" "<<endl;
 			light.setPosition(glm::vec3(modelView.top()*lights[i].getPosition()));
 			l.push_back(light);
 		}

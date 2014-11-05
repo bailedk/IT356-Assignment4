@@ -4,10 +4,20 @@
 	<instance name="cylinder" path="models/cylinder" />
 	<instance name="cone" path="models/cone" />
 	
-	<transform BB="true">
+	<transform>
 		<set>
 			<scale>2 2 2 </scale>
 		</set>
+		
+		<light>
+			<ambient>0.8 0.8 0.8</ambient>
+			<diffuse>0.8 0.8 0.8</diffuse>
+			<specular>0.8 0.8 0.8</specular>
+			<position>100 100 100 </position>
+			<direction>0 1 0 </direction>
+			<spotangle>90</spotangle>
+			<spotdirection>1 0 0 </spotdirection>
+		</light> 
 		<group name="ride">
 			<group>
 				<transform>
@@ -18,7 +28,7 @@
 							<set>
 								<scale>10 2 10 </scale>
 							</set>
-							<object instanceof="cylinder" BB="true" >
+							<object instanceof="cylinder">
 								<material>
 									<color>0 1 0</color>
 								</material>
@@ -31,7 +41,15 @@
 							</set>
 							<object instanceof="cylinder">
 								<material>
-									<color>0 1 0</color>
+									<ambient>.1 .2 .3</ambient>
+									<diffuse>.5 .5 .5</diffuse>
+									<specular>.3 .3 .3</specular>
+									<shininess>0</shininess>
+									<!--the following four will be relevant in ray tracer -->
+									<absorption>0.5 </absorption>
+									<reflection>0.1</reflection>
+									<transparency>0.4</transparency>
+									<refractive>1.2</refractive>
 								</material>
 							</object>
 						</transform>
@@ -39,7 +57,7 @@
 							<set>
 								<translate>0 19 0 </translate>
 							</set>
-							<group BB="true">
+							<group>
 								<transform name="top">
 									<set>
 										<scale>5 4 5 </scale>
