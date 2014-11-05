@@ -36,7 +36,7 @@ double frame_rate;
 bool mousePressed;
 int mouseX,mouseY;
 
-string filename = "ride_combined.xml";
+string filename = "test.xml";
 
 int main(int argc, char *argv[])
 {

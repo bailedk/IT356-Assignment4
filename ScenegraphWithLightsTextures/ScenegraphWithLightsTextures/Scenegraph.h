@@ -43,6 +43,7 @@ public:
 	void addTexture(Texture *tex)
 	{
 		cout << "Texture " << tex->getName() << " added" << endl;
+		textureMap[tex->getName()] = tex;
 	}
 
 	void animate(float t);
@@ -66,19 +67,19 @@ public:
 	}
 
 
-	// UNCOMMENT WHEN READY
-	/*
+	
 	Texture *getTexture(string name)
 	{
 		cout << "Texture " << name << " looked up" << endl;
+		return textureMap[name];
 	}
-	*/
 private:
     Node *root;
 	vector<Object *> instances;
 	vector<Light> lights;
+	std::map<string,Texture *> textureMap;
 	GLint objectColorLocation,modelviewLocation,normalMatrixLocation,numLightsLocation,mat_ambientLocation,
-		mat_diffuseLocation,mat_specularLocation,mat_shininessLocation;
+		mat_diffuseLocation,mat_specularLocation,mat_shininessLocation,texturematrixLocation,textureLocation;
 	void getLights(stack<glm::mat4>& modelView);
 	LightLocation lightLocation[3];
 

@@ -326,8 +326,8 @@ private:
 			name = node->first_attribute("texture")->value();
 			//attach texture
 
-			// UNCOMMENT LATER
-			// tex = sgraph->getTexture(name);
+			//UNCOMMENT
+			tex = sgraph->getTexture(name);
 		}
 
 		Object *obj = sgraph->getInstance(instanceOf);

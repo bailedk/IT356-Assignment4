@@ -30,6 +30,8 @@ public:
 		material.setSpecular(0.8f,0.2f,0.2f);
 		material.setShininess(50.0f);
 		*/
+		texture=NULL;
+
 	}
 
 	~LeafNode(void)
@@ -62,8 +64,15 @@ public:
 			glUniform3fv(scenegraph->mat_specularLocation,1,glm::value_ptr(material.getSpecular()));
 			glUniform1f(scenegraph->mat_shininessLocation,material.getShininess());
 
+			if(texture!=NULL){
+				glUniformMatrix4fv(scenegraph->texturematrixLocation,1,GL_FALSE,glm::value_ptr(modelView.top()));
 
-			
+
+				glEnable(GL_TEXTURE_2D);
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D,texture->getTextureID());
+				glUniform1i(scenegraph->textureLocation,0);
+			}
 			a = glGetError();
 			instanceOf->draw();        
 			a = glGetError();
@@ -131,10 +140,12 @@ public:
 	void setTexture(Texture *tex)
 	{
 		cout << "Texture set to " << tex->getName() << endl;
+		texture=tex;
 	}
 	
 protected:
 	Object *instanceOf;
+	Texture *texture;
 	Material material;
 };
 #endif

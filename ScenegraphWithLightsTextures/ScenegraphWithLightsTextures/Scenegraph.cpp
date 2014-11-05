@@ -64,6 +64,11 @@ void Scenegraph::initShaderProgram(GLint shaderProgram)
 	mat_diffuseLocation = glGetUniformLocation(shaderProgram,"material.diffuse");
 	mat_specularLocation = glGetUniformLocation(shaderProgram,"material.specular");
 	mat_shininessLocation = glGetUniformLocation(shaderProgram,"material.shininess");
+
+	
+	texturematrixLocation = glGetUniformLocation(shaderProgram,"texturematrix");
+	textureLocation = glGetUniformLocation(shaderProgram,"image");
+
 	
 }
 
@@ -162,7 +167,7 @@ void Scenegraph::draw(stack<glm::mat4>& modelView)
 		}
 		
 		
-		glUseProgram(programCopy);
+		//glUseProgram(programCopy);
 	}
 }
 
