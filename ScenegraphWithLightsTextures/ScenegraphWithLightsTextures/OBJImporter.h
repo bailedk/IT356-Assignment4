@@ -85,7 +85,8 @@ public:
 
 				texcoords.push_back(v);
 			}
-			else if (token == "n")
+			// edit 
+			else if (token == "vn")
 			{
 				glm::vec3 v;
 
