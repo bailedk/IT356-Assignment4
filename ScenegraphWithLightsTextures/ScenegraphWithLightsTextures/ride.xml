@@ -3,6 +3,7 @@
 	<instance name="box" path="models/box" />
 	<instance name="cylinder" path="models/cylinder" />
 	<instance name="cone" path="models/cone" />
+		<image name="white" path="white.png" />
 	
 <transform  name="cabin">
 	<set>

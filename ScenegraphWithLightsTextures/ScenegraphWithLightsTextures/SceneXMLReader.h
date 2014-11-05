@@ -100,7 +100,6 @@ private:
 		Node *n = new GroupNode(sgraph,nameOfGroup);
 		nodeMap[nameOfGroup] = n;
 
-
 		for (i=1,node = first_node;node!=NULL;node = node->next_sibling(NULL),i++)
 		{
 			if (strcmp(node->name(),"group")==0)
@@ -269,6 +268,7 @@ private:
 					return NULL;
 				}
 
+				cout << path << endl;
 				//create texture
 				Texture *tex = new Texture();
 				tex->createImage(path);
@@ -282,8 +282,7 @@ private:
 				l = getLight(node->first_node(NULL));
 
 				n->addLight(l);
-			}
-			
+			}		
 		}
 		return n;
 	}
@@ -306,6 +305,7 @@ private:
 		if (node->first_attribute("name")!=NULL)
 		{
 			name = node->first_attribute("name")->value();
+			cout << "name " << name << endl;
 		}
 		else
 		{
@@ -321,6 +321,8 @@ private:
 			}
 		}
 		
+
+
 		if (node->first_attribute("texture")!=NULL)
 		{
 			name = node->first_attribute("texture")->value();
@@ -329,6 +331,12 @@ private:
 			//UNCOMMENT
 			tex = sgraph->getTexture(name);
 		}
+		else {
+			name = "white";
+			tex = sgraph->getTexture(name);
+		}
+
+
 
 		Object *obj = sgraph->getInstance(instanceOf);
 		if (obj==NULL)
@@ -337,8 +345,10 @@ private:
 		Node *child = new LeafNode(obj,sgraph,name);
 		child->setBBDraw(bbDraw);
 		//SET TEXTURE
-		if (tex!=NULL)
-			((LeafNode *)child)->setTexture(tex);
+		if (tex!=NULL) {
+			((LeafNode *)child)->setTexture(tex);	
+		}
+
 		nodeMap[name] = child;
 
 		//get the material

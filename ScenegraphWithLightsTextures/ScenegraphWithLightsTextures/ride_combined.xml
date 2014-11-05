@@ -3,9 +3,9 @@
 	<instance name="box" path="models/box" />
 	<instance name="cylinder" path="models/cylinder" />
 	<instance name="cone" path="models/cone" />
-	<image name="default" path="white.png" />
-		<image name="checkerboard" path="checkerboard.png" />
-
+	<image name="checkerboard" path="checkerboard.png" />
+	<image name="earthmap" path="earthmap.png" />
+	<image name="white" path="white.png" />
 	
 <transform   name="cabin">
 	<set>
@@ -27,7 +27,7 @@
 							<set>
 								<scale> 5 20 20 </scale>
 							</set>
-							<object instanceof="box" texture="checkerboard">
+							<object instanceof="box">
 								<material>
 									<color> 1 0 0 </color>
 								</material>                    

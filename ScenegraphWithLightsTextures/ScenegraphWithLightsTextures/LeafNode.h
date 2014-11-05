@@ -31,12 +31,7 @@ public:
 		material.setShininess(50.0f);
 		*/
 
-		string nPath = "white.png";
-		string nNull = "default";
-		Texture *tex = new Texture();
-		tex->createImage(nPath);
-		tex->setName(nNull);
-		texture = tex;
+		texture = NULL;
 
 		//delete tex;
 	}
@@ -72,12 +67,17 @@ public:
 			glUniform3fv(scenegraph->mat_specularLocation,1,glm::value_ptr(material.getSpecular()));
 			glUniform1f(scenegraph->mat_shininessLocation,material.getShininess());
 
-			glUniformMatrix4fv(scenegraph->texturematrixLocation,1,GL_FALSE,glm::value_ptr(glm::mat4(1.0f)));
-			glEnable(GL_TEXTURE_2D);
-			glActiveTexture(GL_TEXTURE0);
-			glBindTexture(GL_TEXTURE_2D,texture->getTextureID());
-			glUniform1i(scenegraph->textureLocation,0);
-			scenegraph->textureLocation;
+			if(texture != NULL) {
+				glUniformMatrix4fv(scenegraph->texturematrixLocation,1,GL_FALSE,glm::value_ptr(glm::mat4(1.0f)));
+				glEnable(GL_TEXTURE_2D);
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D,texture->getTextureID());
+				glUniform1i(scenegraph->textureLocation,0);
+				scenegraph->textureLocation;
+			}
+			else {
+				cout << "empty" << endl;
+			}
 
 			a = glGetError();
 			instanceOf->draw();        
