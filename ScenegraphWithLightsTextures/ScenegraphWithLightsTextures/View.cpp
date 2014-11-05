@@ -77,8 +77,6 @@ void View::initialize()
 	projectionLocation = glGetUniformLocation(program,"projection");
 
 	sgraph.initShaderProgram(program);
-	
-    
 }
 
 void View::draw()

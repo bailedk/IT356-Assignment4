@@ -69,7 +69,6 @@ void Scenegraph::initShaderProgram(GLint shaderProgram)
 	texturematrixLocation = glGetUniformLocation(shaderProgram,"texturematrix");
 	textureLocation = glGetUniformLocation(shaderProgram,"image");
 
-	
 }
 
 void Scenegraph::draw(stack<glm::mat4>& modelView)
@@ -181,13 +180,13 @@ void Scenegraph::animate(float time)
 		//cabin->setAnimationTransform(glm::translate(glm::mat4(1.0),glm::vec3(cos(time*5)*50,0,0)) * glm::translate(glm::mat4(1.0),glm::vec3(0,-75,0)));
 	}
 
-	if(chair0 != NULL) {
+	if(chair1 != NULL) {
 		//chair1->setAnimationTransform(glm::rotate(glm::mat4(1.0),time,glm::vec3(0,1,0)) * chair1->getTransform());
 		//chair1->setAnimationTransform(glm::rotate(glm::mat4(1.0),cos(time),glm::vec3(0,1,0)) * chair1->getTransform());
 
 		
-		//chair0->setAnimationTransform(glm::rotate(glm::mat4(1.0),time,glm::vec3(0,1,0)));
-		chair0->setAnimationTransform(glm::translate(glm::mat4(1.0),glm::vec3(cos(time*5)*50,0,0)));
+		chair0->setAnimationTransform(glm::rotate(glm::mat4(1.0),time,glm::vec3(0,1,0)));
+		chair1->setAnimationTransform(glm::translate(glm::mat4(1.0),glm::vec3(cos(time*5)*10,0,0)));
 		//chair1->setAnimationTransform(glm::rotate(glm::mat4(1.0),time,glm::vec3(0,1,0)));
 		//chair2->setAnimationTransform(glm::rotate(glm::mat4(1.0),time,glm::vec3(0,1,0)));
 		//chair3->setAnimationTransform(glm::rotate(glm::mat4(1.0),time,glm::vec3(0,1,0)));
