@@ -7,7 +7,7 @@ class Light
 {
 private:
     glm::vec3 ambient,diffuse,specular;
-    glm::vec4 position,spot_direction;
+    glm::vec4 position,direction,spot_direction;
     float spot_cutoff;
 public:
 	Light(void);

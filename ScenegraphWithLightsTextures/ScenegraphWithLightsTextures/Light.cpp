@@ -39,7 +39,7 @@ void Light::setPosition(float x,float y,float z)
 
 void Light::setDirection(float x,float y,float z)
 {
-    position = glm::vec4(x,y,z,0.0f);
+    direction = glm::vec4(x,y,z,0.0f);
 }
 
 void Light::setSpotDirection(glm::vec3 spotdir)
@@ -70,7 +70,7 @@ void Light::setPosition(glm::vec3 pos)
 
 void Light::setDirection(glm::vec3 dir)
 {
-    position = glm::vec4(dir,0.0f);
+    direction = glm::vec4(dir,0.0f);
 }
 
 void Light::setSpotDirection(float x,float y,float z)
