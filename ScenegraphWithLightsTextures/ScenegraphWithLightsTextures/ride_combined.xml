@@ -7,7 +7,12 @@
 	<image name="checkerboard" path="checkerboard.png" />
 	<image name="earthmap" path="earthmap.png" />
 	<image name="white" path="white.png" />
-<group>	
+
+	<transform>
+	<set>
+		<scale>0.7 0.7 0.7</scale>
+	</set>
+	<group>	
 	<transform  name="cabin">
 		<set>
 			<scale>1 1 1</scale>
@@ -572,7 +577,7 @@
 	</transform>
 	<transform>
 		<set>
-			<scale>500 500 500</scale>
+			<scale>1600 1600 1600</scale>
 		</set>
 		<object instanceof="inverted-box">
 			<material>
@@ -584,4 +589,5 @@
 		</object>
 	</transform>
 </group>
+</transform>
 </scene>

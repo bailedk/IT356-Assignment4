@@ -177,7 +177,7 @@ void Scenegraph::animate(float time)
 {
 	time = time*8;
 	if(cabin != NULL) {
-               cabin->setAnimationTransform(glm::rotate(glm::mat4(1.0),cos(time),glm::vec3(0,0,1)) * glm::translate(glm::mat4(1.0),glm::vec3(0,-75,0)));
+               cabin->setAnimationTransform(glm::translate(glm::mat4(1.0),glm::vec3(140,75,0)) * glm::rotate(glm::mat4(1.0),cos(time),glm::vec3(0,0,1)) * glm::translate(glm::mat4(1.0),glm::vec3(-100,-75,0)));
        }
 
        if(chair0 != NULL) {
