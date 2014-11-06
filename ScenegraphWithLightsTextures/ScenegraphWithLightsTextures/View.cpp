@@ -20,6 +20,7 @@ View::View()
 {
     trackballTransform = glm::mat4(1.0);
 	time = 0.0;
+	camNum = 0;
 }
 
 View::~View()
@@ -101,7 +102,18 @@ void View::draw()
 	GLuint a;
 
     modelview.push(glm::mat4(1.0));
-	modelview.top() = modelview.top() * glm::lookAt(glm::vec3(0,0,240),glm::vec3(0,0,0),glm::vec3(0,1,0)) * trackballTransform;
+	if(camNum == 0) {
+		modelview.top() = modelview.top() * glm::lookAt(glm::vec3(0,150,0),glm::vec3(0,0,0),glm::vec3(1,0,0)) * trackballTransform;
+	}
+	else if(camNum == 1) {
+		//modelview.top() = modelview.top() * glm::lookAt(glm::vec3(0,0,80),glm::vec3(0,0,0),glm::vec3(0,1,0)) * trackballTransform;
+
+		// write a function to return the node that has the camera
+		// getTransform virtual func, return identity in all but transform node, in transform get animation transform or w/e
+		glm::mat4 butts = sgraph.cameraNode->getTransform();
+		glm::mat4 butts2 = modelview.top();
+		modelview.top() = butts * glm::lookAt(glm::vec3(0,0,0),glm::vec3(0,0,0),glm::vec3(1,0,0)) * trackballTransform;
+	}
 
 	glUniformMatrix4fv(projectionLocation,1,GL_FALSE,glm::value_ptr(proj.top()));
 
@@ -118,7 +130,7 @@ void View::draw()
      *of the shader itself.
      */
 	a = glGetError();
-    glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+    glPolygonMode(GL_FRONT_AND_BACK,GL_LINES);
     sgraph.draw(modelview);
 	a = glGetError();
     glFinish();
@@ -149,7 +161,9 @@ void View::mousemove(int x, int y)
    
     prev_mouse = glm::vec2(x,y);
 	
-    trackballTransform = glm::rotate(glm::mat4(1.0),angle,glm::vec3(-dy,dx,0)) * trackballTransform;
+    //trackballTransform = glm::rotate(glm::mat4(1.0),angle,glm::vec3(-dy,dx,0)) * trackballTransform;
+    trackballTransform = glm::rotate(glm::mat4(1.0),angle,glm::vec3(dx,0,-dy)) * trackballTransform;
+
 }
 
 /*

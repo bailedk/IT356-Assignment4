@@ -76,6 +76,9 @@ public:
     {
         modelView.push(modelView.top());
         modelView.top() = modelView.top() * animation_transform * transform;
+		
+		mv = modelView.top();
+
         if (child!=NULL)
 			child->draw(modelView);
         modelView.pop();
@@ -86,7 +89,6 @@ public:
 		
 		if (bbDraw)
 		{
-			glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 			glm::mat4 bbTransform;
 
 			bbTransform = glm::translate(glm::mat4(1.0),0.5f*(minBounds+maxBounds)) * glm::scale(glm::mat4(1.0),maxBounds-minBounds);
@@ -94,11 +96,14 @@ public:
 			//set the color for all vertices to be drawn for this object
 			glUniform3fv(scenegraph->objectColorLocation,1,glm::value_ptr(color));
 			glUniformMatrix4fv(scenegraph->modelviewLocation,1,GL_FALSE,glm::value_ptr(modelView.top() * bbTransform));
-			scenegraph->getInstance("box")->draw();  
-			glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+			scenegraph->getInstance("box")->draw();        		
 		}
 		modelView.push(modelView.top());
         modelView.top() = modelView.top() * animation_transform * transform;
+
+		if(camDraw) {
+
+		}
         
 		if (child!=NULL)
 			child->drawBB(modelView);
@@ -180,16 +185,15 @@ public:
         animation_transform = mat;
     }
 
-    glm::mat4 getTransform()
-    {
-        return transform;
-    }
-
     glm::mat4 getAnimationTransform()
     {
         return animation_transform;
     }
 	
+	glm::mat4 getTransform() {
+		return mv;
+		//return glm::mat4(1.0f);
+	}
 
 protected:
 	glm::mat4 transform,animation_transform;

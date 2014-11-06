@@ -52,6 +52,7 @@ public:
 
 		Node * root = NULL;
 		bool bbDraw = false;
+		bool camDraw = false;
 
 		int level = 0;
 
@@ -77,6 +78,14 @@ public:
 			}
 		}
 
+		// TODO REMEMBER TO ADD THIS IN OTHER PLACES NEEDED
+
+		if(root_node->first_attribute("camera")!=NULL) {
+				cout << "camera here" << endl;
+				// TODO ADD TEST FOR ATTRIBUTE VALUE
+				camDraw = true;
+		}
+
 		root = createGroupTree(root_node->first_node(NULL),name,&sgraph,level);
 
 
@@ -86,6 +95,11 @@ public:
 		root->setBBDraw(bbDraw);
 		
 		sgraph.makeScenegraph(root);
+
+		if(camDraw) {
+			sgraph.cameraNode = root;
+		}
+
 
 		return true;
 	}
@@ -105,6 +119,7 @@ private:
 			if (strcmp(node->name(),"group")==0)
 			{
 				bool bbDraw = false;
+				bool camDraw = false;
 
 				if (node->first_attribute("name")!=NULL)
 				{
@@ -124,6 +139,13 @@ private:
 					{
 						bbDraw = true;
 					}
+				}
+
+				// TODO REMEMBER TO ADD THIS IN OTHER PLACES NEEDED
+				if(node->first_attribute("camera")!=NULL) {
+						cout << "camera here" << endl;
+						// TODO ADD TEST FOR ATTRIBUTE VALUE
+						camDraw = true;
 				}
 				
 				
@@ -152,6 +174,10 @@ private:
 				if (child!=NULL)
 				{
 					child->setBBDraw(bbDraw);	
+					if(camDraw) {
+						sgraph->cameraNode = child;
+					}
+
 					
 					((GroupNode *)n)->addChild(child);
 				}
@@ -163,6 +189,7 @@ private:
 			else if (strcmp(node->name(),"transform")==0)
 			{
 				bool bbDraw = false;
+				bool camDraw = false;
 				if (node->first_attribute("name")!=NULL)
 				{
 					name = node->first_attribute("name")->value();
@@ -183,9 +210,20 @@ private:
 					}
 				}
 
+				// TODO REMEMBER TO ADD THIS IN OTHER PLACES NEEDED
+				if(node->first_attribute("camera")!=NULL) {
+						cout << "camera here" << endl;
+						// TODO ADD TEST FOR ATTRIBUTE VALUE
+						camDraw = true;
+				}
+
 				Node * child = createTransformTree(node->first_node(NULL),name,sgraph,level+1);
 				if (child!=NULL)
 				{
+					child->setCamDraw(camDraw);
+					if(camDraw) {
+						sgraph->cameraNode = child;
+					}
 					child->setBBDraw(bbDraw);
 					((GroupNode *)n)->addChild(child);
 				}
@@ -291,6 +329,7 @@ private:
 	{
 		string name,instanceOf;
 		bool bbDraw = false;
+		bool camDraw = false;
 		Texture *tex=NULL;
 
 		if (node->first_attribute("instanceof")!=NULL)
@@ -321,7 +360,12 @@ private:
 			}
 		}
 		
-
+		// TODO REMEMBER TO ADD THIS IN OTHER PLACES NEEDED
+		if(node->first_attribute("camera")!=NULL) {
+				cout << "camera here" << endl;
+				// TODO ADD TEST FOR ATTRIBUTE VALUE
+				camDraw = true;
+		}
 
 		if (node->first_attribute("texture")!=NULL)
 		{
@@ -344,6 +388,7 @@ private:
 
 		Node *child = new LeafNode(obj,sgraph,name);
 		child->setBBDraw(bbDraw);
+
 		//SET TEXTURE
 		if (tex!=NULL) {
 			((LeafNode *)child)->setTexture(tex);	
@@ -452,6 +497,11 @@ private:
 			child->addLight(l);
 		}
 
+		if(camDraw) {
+			sgraph->cameraNode = child;
+		}
+
+
 		return child;
 	}
 
@@ -526,6 +576,7 @@ private:
 				if (strcmp(start->name(),"group")==0)
 				{
 					bool bbDraw = false;
+					bool camDraw = false;
 					if (start->first_attribute("copyof")!=NULL)
 					{
 						string copyof = start->first_attribute("copyof")->value();
@@ -551,8 +602,19 @@ private:
 						}
 					}
 
+					// TODO REMEMBER TO ADD THIS IN OTHER PLACES NEEDED
+					if(start->first_attribute("camera")!=NULL) {
+							cout << "camera here" << endl;
+							// TODO ADD TEST FOR ATTRIBUTE VALUE
+							camDraw = true;
+					}
+
 					if (child!=NULL)
 					{
+						if(camDraw) {
+							sgraph->cameraNode = child;
+						}
+
 						child->setBBDraw(bbDraw);
 					}
 				}

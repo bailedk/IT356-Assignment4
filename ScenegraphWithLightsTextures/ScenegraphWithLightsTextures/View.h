@@ -46,6 +46,8 @@ public:
     View();
     ~View();
 
+	int camNum;
+
     //the delegation functions called from the glut functions in main.cpp
     void resize(int w,int h);
     void initialize();
@@ -86,6 +88,7 @@ private:
 
     glm::vec2 prev_mouse;
 	GLuint program;
+
 };
 
 #endif // VIEW_H

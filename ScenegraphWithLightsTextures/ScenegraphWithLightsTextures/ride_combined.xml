@@ -584,7 +584,7 @@
 				<ambient>0 0 1</ambient>
 				<diffuse>1 0 0</diffuse>
 				<specular>1 1 1</specular>
-				<shininess>20</shininess>
+				<shininess>100</shininess>
 			</material>                  
 		</object>
 	</transform>

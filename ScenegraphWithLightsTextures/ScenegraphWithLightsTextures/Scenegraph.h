@@ -35,6 +35,8 @@ public:
     void initShaderProgram(GLint shaderProgram);
     void draw(stack<glm::mat4>& modelView);
 
+	Node * cameraNode;
+
 	void addInstance(Object *in)
 	{
 		instances.push_back(in);

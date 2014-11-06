@@ -7,6 +7,8 @@
 #include <iostream>
 using namespace std;
 #include "Light.h"
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include <glm/glm.hpp>
 
 class Scenegraph;
@@ -19,6 +21,8 @@ protected:
 	bool bbDraw;
 	glm::vec3 minBounds,maxBounds;
 	vector<Light> lights;
+	bool camDraw;
+	glm::mat4 mv;
 	
 public:
     Node(Scenegraph *graph,string name="")
@@ -27,6 +31,8 @@ public:
         scenegraph = graph;
         setName(name);
 		bbDraw = false;
+		camDraw = false;
+		mv = glm::mat4(1.0f);
     }
 
     virtual ~Node()
@@ -41,7 +47,7 @@ public:
 		return NULL;
 	}
 
-
+	virtual glm::mat4 getTransform()=0;
 
     virtual void draw(stack<glm::mat4>& modelView)=0;
 	virtual void drawBB(stack<glm::mat4>& modelView)=0;
@@ -61,6 +67,11 @@ public:
 	void setBBDraw(bool d)
 	{
 		bbDraw = d;
+	}
+
+	void setCamDraw(bool c) {
+		camDraw = c;
+		cout << "CAM DRAW!! " << endl;
 	}
 
 	glm::vec3 getMinBounds()

@@ -111,6 +111,14 @@ void processEvent(sf::Event event,sf::RenderWindow& window)
 		case sf::Keyboard::R:
 			v.openFile(filename);
 			break;
+		case sf::Keyboard::Num1:
+			cout << "Pressed 1" << endl;
+			v.camNum = 0;
+			break;
+		case sf::Keyboard::Num2:
+			cout << "Pressed 2" << endl;
+			v.camNum = 1;
+			break;
 		}
 		break;
 	case sf::Event::Resized:
