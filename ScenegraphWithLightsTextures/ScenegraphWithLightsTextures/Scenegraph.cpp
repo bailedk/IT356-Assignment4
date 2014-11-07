@@ -107,7 +107,7 @@ void Scenegraph::draw(stack<glm::mat4>& modelView)
 			glm::vec4 boundMatrix = glm::vec4(cameraNode->getMaxBounds(),0) * glm::scale(glm::mat4(1.0), glm::vec3(x,y,z));
 		
 			// glm::scale(glm::mat4(1.0), glm::inverse(glm::vec3(x,y,z)))
-			modelView.top() = modelView.top() * glm::lookAt(glm::vec3(boundMatrix.x,0,0),glm::vec3(0,0,0),glm::vec3(0,1,0)) * 
+			modelView.top() = modelView.top() * glm::lookAt(glm::vec3(boundMatrix.x,boundMatrix.y,0),glm::vec3(0,0,0),glm::vec3(0,1,0)) * 
 				trackballTransform * glm::scale(glm::mat4(1.0), glm::vec3(x,y,z))
 				*glm::inverse(cameraTransform);
 		}

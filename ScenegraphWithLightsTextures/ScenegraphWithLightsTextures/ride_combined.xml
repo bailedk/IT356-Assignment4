@@ -438,7 +438,7 @@
 									<set>
 										<scale>5 4 5 </scale>
 									</set>
-									<object instanceof="sphere" texture="earthmap" camera="true" >
+									<object instanceof="sphere" texture="earthmap" >
 										<material>
 											<ambient>.1 .2 .3</ambient>
 											<diffuse>.5 .5 .5</diffuse>
@@ -491,7 +491,7 @@
 													</set>
 													
 													<group name="chair">
-														<transform name="chair1back" >
+														<transform name="chair1back" camera="true">
 															<set>
 																<!-- Transform Chair 1 Back -->
 																<scale>1 5 4</scale> 
