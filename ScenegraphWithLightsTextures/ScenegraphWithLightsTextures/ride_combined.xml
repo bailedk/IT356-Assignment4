@@ -7,6 +7,7 @@
 	<image name="checkerboard" path="checkerboard.png" />
 	<image name="earthmap" path="earthmap.png" />
 	<image name="white" path="white.png" />
+	<image name="space" path="hst.jpg" />
 
 	<transform>
 	<set>
@@ -97,7 +98,7 @@
 					<translate>40 0 -40 </translate>
 				</set>
 				<group>
-					<transform name="chair1">
+					<transform name="chair1" camera="true">
 						<set>
 							<translate>-10 0 0 </translate>
 						</set>
@@ -387,7 +388,7 @@
 							<set>
 								<scale>10 2 10 </scale>
 							</set>
-							<object instanceof="cylinder">
+							<object instanceof="cylinder" > 
 								<material>
 									<ambient>1 0 0</ambient>
 									<diffuse>1 0 0</diffuse>
@@ -437,7 +438,7 @@
 									<set>
 										<scale>5 4 5 </scale>
 									</set>
-									<object instanceof="sphere" texture="earthmap" camera="true" >
+									<object instanceof="sphere" texture="earthmap" >
 										<material>
 											<ambient>.1 .2 .3</ambient>
 											<diffuse>.5 .5 .5</diffuse>
@@ -479,7 +480,7 @@
 																</material>
 													</object>
 												</transform>
-												<transform name="chair1" >
+												<transform name="chair1"  >
 													<set>
 														<!-- Transform Chair 1 -->
 														<rotate>90 0 0 1</rotate>
@@ -579,10 +580,10 @@
 		<set>
 			<scale>1600 1600 1600</scale>
 		</set>
-		<object instanceof="inverted-box">
+		<object instanceof="inverted-box" texture="space">
 			<material>
-				<ambient>0 0 1</ambient>
-				<diffuse>1 0 0</diffuse>
+				<ambient>1 1 1</ambient>
+				<diffuse>1 1 1</diffuse>
 				<specular>1 1 1</specular>
 				<shininess>100</shininess>
 			</material>                  
