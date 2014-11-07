@@ -220,7 +220,7 @@ private:
 				Node * child = createTransformTree(node->first_node(NULL),name,sgraph,level+1);
 				if (child!=NULL)
 				{
-					child->setCamDraw(camDraw);
+					//child->setCamDraw(camDraw);
 					if(camDraw) {
 						sgraph->cameraNode = child;
 					}

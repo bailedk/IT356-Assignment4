@@ -115,9 +115,21 @@ void processEvent(sf::Event event,sf::RenderWindow& window)
 			cout << "Pressed 1" << endl;
 			v.camNum = 0;
 			break;
-		case sf::Keyboard::Num2:
+		case sf::Keyboard::Num2: 
 			cout << "Pressed 2" << endl;
 			v.camNum = 1;
+			break;
+		case sf::Keyboard::Up: 
+			cout << "move in" << endl;
+			break;
+		case sf::Keyboard::Down:
+			cout << "move back" << endl;
+			break;
+		case sf::Keyboard::Left:
+			cout << "move left" << endl;
+			break;
+		case sf::Keyboard::Right: 
+			cout << "move right" << endl;
 			break;
 		}
 		break;
