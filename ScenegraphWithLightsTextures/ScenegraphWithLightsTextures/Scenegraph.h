@@ -35,6 +35,7 @@ public:
     void initShaderProgram(GLint shaderProgram);
     void draw(stack<glm::mat4>& modelView);
 	int camNum;
+	glm::mat4 trackballTransform;
 	Node * cameraNode;
 
 	void addInstance(Object *in)

@@ -103,6 +103,8 @@ void View::draw()
 
     modelview.push(glm::mat4(1.0));
 	sgraph.camNum = camNum;
+	sgraph.trackballTransform = trackballTransform;
+
 	/*
 	if(camNum == 0) {
 		modelview.top() = modelview.top() * glm::lookAt(glm::vec3(0,150,0),glm::vec3(0,0,0),glm::vec3(1,0,0)) * trackballTransform;
