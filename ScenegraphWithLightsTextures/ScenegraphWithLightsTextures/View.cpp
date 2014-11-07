@@ -110,9 +110,9 @@ void View::draw()
 
 		// write a function to return the node that has the camera
 		// getTransform virtual func, return identity in all but transform node, in transform get animation transform or w/e
-		glm::mat4 butts = sgraph.cameraNode->getTransform();
+		glm::vec3 butts = glm::vec3(glm::inverse(sgraph.cameraNode->getTransform())*glm::vec4(0.0f,0.0f,0.0f,1.0f));
 		glm::mat4 butts2 = modelview.top();
-		modelview.top() = butts * glm::lookAt(glm::vec3(0,0,0),glm::vec3(0,0,0),glm::vec3(1,0,0)) * trackballTransform;
+		modelview.top() = glm::lookAt(butts,butts+glm::vec3(5,0,0),glm::vec3(0,1,0));
 	}
 
 	glUniformMatrix4fv(projectionLocation,1,GL_FALSE,glm::value_ptr(proj.top()));

@@ -428,7 +428,7 @@
 								</material>
 							</object>
 						</transform>
-						<transform name="spinner">
+						<transform name="spinner" >
 							<set>
 								<translate>0 19 0 </translate>
 							</set>
@@ -437,7 +437,7 @@
 									<set>
 										<scale>5 4 5 </scale>
 									</set>
-									<object instanceof="sphere" texture="earthmap" >
+									<object instanceof="sphere" texture="earthmap" camera="true">
 										<material>
 											<ambient>.1 .2 .3</ambient>
 											<diffuse>.5 .5 .5</diffuse>
