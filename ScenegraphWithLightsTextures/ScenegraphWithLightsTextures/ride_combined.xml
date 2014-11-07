@@ -13,7 +13,7 @@
 		<scale>0.7 0.7 0.7</scale>
 	</set>
 	<group>	
-	<transform  name="cabin">
+	<transform  name="cabin" >
 		<set>
 			<scale>1 1 1</scale>
 			<translate>100 0 0</translate>
@@ -428,7 +428,7 @@
 								</material>
 							</object>
 						</transform>
-						<transform name="spinner" >
+						<transform name="spinner">
 							<set>
 								<translate>0 19 0 </translate>
 							</set>
@@ -437,7 +437,7 @@
 									<set>
 										<scale>5 4 5 </scale>
 									</set>
-									<object instanceof="sphere" texture="earthmap" camera="true">
+									<object instanceof="sphere" texture="earthmap" camera="true" >
 										<material>
 											<ambient>.1 .2 .3</ambient>
 											<diffuse>.5 .5 .5</diffuse>
@@ -459,7 +459,7 @@
 										<transform name="pole1">
 											<set>
 											</set>
-											<group name="poleAssembly">
+											<group name="poleAssembly" >
 												<transform>
 													<set>
 														<!-- Transform pole -->
@@ -479,7 +479,7 @@
 																</material>
 													</object>
 												</transform>
-												<transform name="chair1">
+												<transform name="chair1" >
 													<set>
 														<!-- Transform Chair 1 -->
 														<rotate>90 0 0 1</rotate>
@@ -490,7 +490,7 @@
 													</set>
 													
 													<group name="chair">
-														<transform name="chair1back">
+														<transform name="chair1back" >
 															<set>
 																<!-- Transform Chair 1 Back -->
 																<scale>1 5 4</scale> 

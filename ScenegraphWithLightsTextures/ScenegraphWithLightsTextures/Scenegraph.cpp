@@ -83,19 +83,33 @@ void Scenegraph::draw(stack<glm::mat4>& modelView)
 	*/
 	if (root!=NULL)
 	{
-		//root->updateBB();
-		//root->drawBB(modelView);
-		
+		if(camNum == 0) {
+		modelView.top() = modelView.top() * glm::lookAt(glm::vec3(0,150,0),glm::vec3(0,0,0),glm::vec3(1,0,0));
+		}
+		else if(camNum == 1) {
+			modelView.pop();
+			modelView.push(glm::mat4(1.0));
+			glm::mat4 cameraTransform(1.0);
+			glm::mat4 objTransform(1.0);
+			if(this->cameraNode != NULL){
+				Node *parent = cameraNode->getParent();
+				while(parent != NULL){
+					cameraTransform = parent->getCameraTransform() * cameraTransform;
+					objTransform = parent->getTransform() * objTransform;
+					parent = parent->getParent();
+				}
+			}
+
+            float x = glm::distance(cameraTransform*glm::vec4(0,0,0,1), cameraTransform*glm::vec4(1,0,0,1));
+            float y = glm::distance(cameraTransform*glm::vec4(0,0,0,1), cameraTransform*glm::vec4(0,1,0,1));
+            float z = glm::distance(cameraTransform*glm::vec4(0,0,0,1), cameraTransform*glm::vec4(0,0,1,1));
+
+			modelView.top() = modelView.top()*glm::lookAt(glm::vec3(0,1,0),glm::vec3(0,0,0),glm::vec3(0,1,0))
+				*glm::scale(glm::mat4(1.0), glm::vec3(x,y,z))
+				*glm::inverse(cameraTransform);
+		}
 		
 		getLights(modelView);
-		//cout<<"Lights Size: "<<lights.size()<<endl;
-		//cout << "program : " << programCopy << endl;
-
-		//cout << "position light 0" << endl;
-		//glm::vec4 pos = lights[0].getPosition();
-		//cout << pos[0] << " " << pos[1] << " " << pos[2] << " " << pos[3] << endl;
-				
-		
 
 		for (int i=0;i<lights.size();i++)
 		{
@@ -138,15 +152,6 @@ void Scenegraph::draw(stack<glm::mat4>& modelView)
 			glUniform3fv(lightLocation[i].diffuseLocation,1,glm::value_ptr(lights[i].getDiffuse()));
 			glUniform3fv(lightLocation[i].specularLocation,1,glm::value_ptr(lights[i].getSpecular()));
 			glUniform4fv(lightLocation[i].positionLocation,1,glm::value_ptr(lights[i].getPosition()));
-
-			
-			glm::vec4 pos = lights[i].getPosition();
-			//pos[0] = 50;
-			//pos[1] = 75;
-			//pos[2] = 0;
-			cout << pos[0] << " " << pos[1] << " " << pos[2] << " " << pos[3] << endl;
-			//glUniform4fv(lightLocation[i].positionLocation,1,glm::value_ptr(pos));
-			
 		}
 			/*
 			glm::vec4 pos = lights[0].getPosition();
@@ -167,6 +172,7 @@ void Scenegraph::draw(stack<glm::mat4>& modelView)
 			root->updateBB();
 			root->drawBB(modelView);
 		}
+		
 		
 		
 		//glUseProgram(programCopy);

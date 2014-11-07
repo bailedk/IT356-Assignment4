@@ -102,6 +102,8 @@ void View::draw()
 	GLuint a;
 
     modelview.push(glm::mat4(1.0));
+	sgraph.camNum = camNum;
+	/*
 	if(camNum == 0) {
 		modelview.top() = modelview.top() * glm::lookAt(glm::vec3(0,150,0),glm::vec3(0,0,0),glm::vec3(1,0,0)) * trackballTransform;
 	}
@@ -111,10 +113,11 @@ void View::draw()
 		// write a function to return the node that has the camera
 		// getTransform virtual func, return identity in all but transform node, in transform get animation transform or w/e
 		glm::vec3 butts = glm::vec3(glm::inverse(sgraph.cameraNode->getTransform())*glm::vec4(0.0f,0.0f,0.0f,1.0f));
+		cout<<"Butts: "<<butts.x<<" "<<butts.x<<" "<<butts.x<<endl;
 		glm::mat4 butts2 = modelview.top();
 		modelview.top() = glm::lookAt(butts,butts+glm::vec3(5,0,0),glm::vec3(0,1,0));
 	}
-
+	*/
 	glUniformMatrix4fv(projectionLocation,1,GL_FALSE,glm::value_ptr(proj.top()));
 
 

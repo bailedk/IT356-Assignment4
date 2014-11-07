@@ -81,7 +81,7 @@ public:
 		// TODO REMEMBER TO ADD THIS IN OTHER PLACES NEEDED
 
 		if(root_node->first_attribute("camera")!=NULL) {
-				cout << "camera here" << endl;
+				//cout << "camera here" << endl;
 				// TODO ADD TEST FOR ATTRIBUTE VALUE
 				camDraw = true;
 		}

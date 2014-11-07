@@ -54,9 +54,14 @@ public:
 	virtual void updateBB()=0;
 	virtual Node *clone()=0;
 	virtual void getLights(vector<Light>& l,stack<glm::mat4>& modelView)=0;
+	virtual glm::mat4 getCameraTransform()=0;
 	void setParent(Node *parent)
 	{
 		this->parent = parent;
+	}
+	Node * getParent()
+	{
+		return this->parent;
 	}
 
     void setName(const string& name)

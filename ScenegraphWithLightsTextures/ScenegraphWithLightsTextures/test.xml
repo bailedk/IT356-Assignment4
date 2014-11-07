@@ -10,7 +10,7 @@
 		<set>
 			<scale>50 25 50</scale>
 		</set>
-		<object instanceof="sphere">
+		<object instanceof="sphere" camera="true">
 		<material>
 			<ambient>1 0 0</ambient>
 			<diffuse>1 0 0</diffuse>

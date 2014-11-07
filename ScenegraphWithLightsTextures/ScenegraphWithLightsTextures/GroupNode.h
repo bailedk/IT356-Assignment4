@@ -144,8 +144,12 @@ public:
         return children;
     }
 
-	glm::mat4 getTransform() {
-		return mv;
+	virtual glm::mat4 getCameraTransform(){
+		return glm::mat4(1.0);
+	}
+
+	virtual glm::mat4 getTransform(){
+		return glm::mat4(1.0);
 	}
 
 	

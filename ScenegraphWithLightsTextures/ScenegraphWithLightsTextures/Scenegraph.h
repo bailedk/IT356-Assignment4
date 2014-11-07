@@ -34,7 +34,7 @@ public:
     void makeScenegraph(Node *root);
     void initShaderProgram(GLint shaderProgram);
     void draw(stack<glm::mat4>& modelView);
-
+	int camNum;
 	Node * cameraNode;
 
 	void addInstance(Object *in)
@@ -84,7 +84,7 @@ private:
 		mat_diffuseLocation,mat_specularLocation,mat_shininessLocation,texturematrixLocation,textureLocation;
 	void getLights(stack<glm::mat4>& modelView);
 	LightLocation lightLocation[3];
-
+	
 	GLuint programCopy;
 	TransformNode * cabin;
 	TransformNode * chair0;

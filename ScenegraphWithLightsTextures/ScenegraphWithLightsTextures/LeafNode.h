@@ -99,9 +99,6 @@ public:
 			scenegraph->getInstance("box")->draw();        		
 		}
 
-		// experiment to show where light is
-		//glm::mat4 bbTransform;
-
 
 	}
 	
@@ -115,7 +112,6 @@ public:
 		for(int i =0; i<lights.size();i++){
 			Light light = lights[i];
 			glm::vec4 newPos= lights[i].getPosition();
-			//cout<<"new pos: "<<newPos.x<<" "<<newPos.y<<" "<<newPos.z<<" "<<newPos.w<<" "<<endl;
 			light.setPosition(glm::vec3(modelView.top()*lights[i].getPosition()));
 			l.push_back(light);
 		}
@@ -149,9 +145,12 @@ public:
 		texture=tex;
 	}
 
-	glm::mat4 getTransform() {
-		return mv;
-		//return glm::mat4(1.0f);
+	virtual glm::mat4 getCameraTransform(){
+		return glm::mat4(1.0);
+	}
+
+	virtual glm::mat4 getTransform(){
+		return glm::mat4(1.0);
 	}
 	
 protected:
