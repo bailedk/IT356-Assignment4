@@ -12,6 +12,10 @@ Scenegraph::Scenegraph()
 {
     root = NULL;
 	trackballTransform = glm::mat4(1.0);
+
+	camNum = 0;
+	zoom = 0.0;
+	turn = 0.0;
 }
 
 void Scenegraph::makeScenegraph(Node *r)
@@ -84,8 +88,12 @@ void Scenegraph::draw(stack<glm::mat4>& modelView)
 	*/
 	if (root!=NULL)
 	{
+
+		camMove1 = glm::scale(glm::mat4(1.0f), glm::vec3(zoom+1, zoom+1, zoom+1)) * glm::rotate(glm::mat4(1.0f),glm::radians(turn*1.0f),glm::vec3(1,0,0)) * glm::translate(glm::mat4(1.0f), glm::vec3(0,0,0));
+		camMove2 = glm::scale(glm::mat4(1.0f), glm::vec3(zoom+1, zoom+1, zoom+1)) * glm::rotate(glm::mat4(1.0f),glm::radians(turn*1.0f),glm::vec3(1,0,0)) * glm::translate(glm::mat4(1.0f), glm::vec3(0,0,0));
+
 		if(camNum == 0) {
-		modelView.top() = modelView.top() * glm::lookAt(glm::vec3(0,150,0),glm::vec3(0,0,0),glm::vec3(1,0,0)) * trackballTransform;
+		modelView.top() = modelView.top() * glm::lookAt(glm::vec3(0,150,0),glm::vec3(0,0,0),glm::vec3(1,0,0)) * camMove1 * trackballTransform;
 		}
 		else if(camNum == 1) {
 			modelView.pop();
@@ -107,7 +115,7 @@ void Scenegraph::draw(stack<glm::mat4>& modelView)
 			glm::vec4 boundMatrix = glm::vec4(cameraNode->getMaxBounds(),0) * glm::scale(glm::mat4(1.0), glm::vec3(x,y,z));
 		
 			// glm::scale(glm::mat4(1.0), glm::inverse(glm::vec3(x,y,z)))
-			modelView.top() = modelView.top() * glm::lookAt(glm::vec3(boundMatrix.x,boundMatrix.y,0),glm::vec3(0,0,0),glm::vec3(0,1,0)) * 
+			modelView.top() = modelView.top() * glm::lookAt(glm::vec3(boundMatrix.x,boundMatrix.y,0),glm::vec3(0,0,0),glm::vec3(0,1,0)) * camMove2 *
 				trackballTransform * glm::scale(glm::mat4(1.0), glm::vec3(x,y,z))
 				*glm::inverse(cameraTransform);
 		}

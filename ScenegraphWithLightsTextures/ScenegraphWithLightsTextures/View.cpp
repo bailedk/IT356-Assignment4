@@ -21,6 +21,8 @@ View::View()
     trackballTransform = glm::mat4(1.0);
 	time = 0.0;
 	camNum = 0;
+	zoom = 0.0;
+	turn = 0.0;
 }
 
 View::~View()
@@ -103,6 +105,8 @@ void View::draw()
 
     modelview.push(glm::mat4(1.0));
 	sgraph.camNum = camNum;
+	sgraph.zoom = zoom;
+	sgraph.turn = turn;
 	sgraph.trackballTransform = trackballTransform;
 
 	/*

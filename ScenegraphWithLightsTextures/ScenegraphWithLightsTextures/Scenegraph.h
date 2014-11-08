@@ -34,6 +34,9 @@ public:
     void makeScenegraph(Node *root);
     void initShaderProgram(GLint shaderProgram);
     void draw(stack<glm::mat4>& modelView);
+
+	float turn;
+	float zoom;
 	int camNum;
 	glm::mat4 trackballTransform;
 	Node * cameraNode;
@@ -92,6 +95,9 @@ private:
 	TransformNode * chair1;
 	TransformNode * chair2;
 	TransformNode * chair3;
+
+	glm::mat4 camMove1;
+	glm::mat4 camMove2;
 };
 
 #endif // SCENEGRAPH_H

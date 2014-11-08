@@ -47,6 +47,8 @@ public:
     ~View();
 
 	int camNum;
+	float turn;
+	float zoom;
 
     //the delegation functions called from the glut functions in main.cpp
     void resize(int w,int h);

@@ -121,15 +121,19 @@ void processEvent(sf::Event event,sf::RenderWindow& window)
 			break;
 		case sf::Keyboard::Up: 
 			cout << "move in" << endl;
+			v.zoom += 0.05;
 			break;
 		case sf::Keyboard::Down:
 			cout << "move back" << endl;
+			v.zoom -= 0.05;
 			break;
 		case sf::Keyboard::Left:
 			cout << "move left" << endl;
+			v.turn--;
 			break;
 		case sf::Keyboard::Right: 
 			cout << "move right" << endl;
+			v.turn++;
 			break;
 		}
 		break;
