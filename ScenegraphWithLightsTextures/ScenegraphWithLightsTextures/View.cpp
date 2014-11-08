@@ -108,22 +108,38 @@ void View::draw()
 	sgraph.zoom = zoom;
 	sgraph.turn = turn;
 	sgraph.trackballTransform = trackballTransform;
+	
+	
+	glm::mat4 camMove1 = glm::scale(glm::mat4(1.0f), glm::vec3(zoom+1, zoom+1, zoom+1)) * glm::rotate(glm::mat4(1.0f),glm::radians(turn*1.0f),glm::vec3(1,0,0)) * glm::translate(glm::mat4(1.0f), glm::vec3(0,0,0));
+	glm::mat4 camMove2 = glm::scale(glm::mat4(1.0f), glm::vec3(zoom+1, zoom+1, zoom+1)) * glm::rotate(glm::mat4(1.0f),glm::radians(turn*1.0f),glm::vec3(1,0,0)) * glm::translate(glm::mat4(1.0f), glm::vec3(0,0,0));
 
-	/*
 	if(camNum == 0) {
-		modelview.top() = modelview.top() * glm::lookAt(glm::vec3(0,150,0),glm::vec3(0,0,0),glm::vec3(1,0,0)) * trackballTransform;
+	modelview.top() = modelview.top() * glm::lookAt(glm::vec3(0,150,0),glm::vec3(0,0,0),glm::vec3(1,0,0)) * camMove1 * trackballTransform;
 	}
 	else if(camNum == 1) {
-		//modelview.top() = modelview.top() * glm::lookAt(glm::vec3(0,0,80),glm::vec3(0,0,0),glm::vec3(0,1,0)) * trackballTransform;
+		modelview.pop();
+		modelview.push(glm::mat4(1.0));
+		glm::mat4 cameraTransform(1.0);
+		glm::mat4 objTransform(1.0);
+		if(sgraph.cameraNode != NULL){
+			Node *parent = sgraph.cameraNode->getParent();
+			while(parent != NULL){
+				cameraTransform = parent->getCameraTransform() * cameraTransform;
+				objTransform = parent->getTransform() * objTransform;
+				parent = parent->getParent();
+			}
+		}
 
-		// write a function to return the node that has the camera
-		// getTransform virtual func, return identity in all but transform node, in transform get animation transform or w/e
-		glm::vec3 butts = glm::vec3(glm::inverse(sgraph.cameraNode->getTransform())*glm::vec4(0.0f,0.0f,0.0f,1.0f));
-		cout<<"Butts: "<<butts.x<<" "<<butts.x<<" "<<butts.x<<endl;
-		glm::mat4 butts2 = modelview.top();
-		modelview.top() = glm::lookAt(butts,butts+glm::vec3(5,0,0),glm::vec3(0,1,0));
+        float x = glm::distance(cameraTransform*glm::vec4(0,0,0,1), cameraTransform*glm::vec4(1,0,0,1));
+        float y = glm::distance(cameraTransform*glm::vec4(0,0,0,1), cameraTransform*glm::vec4(0,1,0,1));
+        float z = glm::distance(cameraTransform*glm::vec4(0,0,0,1), cameraTransform*glm::vec4(0,0,1,1));
+		glm::vec4 boundMatrix = glm::vec4(sgraph.cameraNode->getMaxBounds(),0) * glm::scale(glm::mat4(1.0), glm::vec3(x,y,z));
+		
+		// glm::scale(glm::mat4(1.0), glm::inverse(glm::vec3(x,y,z)))
+		modelview.top() = modelview.top() * glm::lookAt(glm::vec3(boundMatrix.x,boundMatrix.y,0),glm::vec3(0,0,1),glm::vec3(0,1,0)) * camMove2 *
+			trackballTransform * glm::scale(glm::mat4(1.0), glm::vec3(x,y,z))
+			*glm::inverse(cameraTransform);
 	}
-	*/
 	glUniformMatrix4fv(projectionLocation,1,GL_FALSE,glm::value_ptr(proj.top()));
 
 
