@@ -99,9 +99,6 @@ public:
 		modelView.push(modelView.top());
         modelView.top() = modelView.top() * animation_transform * transform;
 
-		if(camDraw) {
-
-		}
         
 		if (child!=NULL)
 			child->drawBB(modelView);
