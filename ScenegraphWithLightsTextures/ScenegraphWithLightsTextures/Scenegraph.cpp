@@ -115,7 +115,7 @@ void Scenegraph::draw(stack<glm::mat4>& modelView)
 			glm::vec4 boundMatrix = glm::vec4(cameraNode->getMaxBounds(),0) * glm::scale(glm::mat4(1.0), glm::vec3(x,y,z));
 		
 			// glm::scale(glm::mat4(1.0), glm::inverse(glm::vec3(x,y,z)))
-			modelView.top() = modelView.top() * glm::lookAt(glm::vec3(boundMatrix.x,boundMatrix.y,0),glm::vec3(0,0,0),glm::vec3(0,1,0)) * camMove2 *
+			modelView.top() = modelView.top() * glm::lookAt(glm::vec3(boundMatrix.x,boundMatrix.y,0),glm::vec3(0,0,1),glm::vec3(0,1,0)) * camMove2 *
 				trackballTransform * glm::scale(glm::mat4(1.0), glm::vec3(x,y,z))
 				*glm::inverse(cameraTransform);
 		}
@@ -180,8 +180,10 @@ void Scenegraph::draw(stack<glm::mat4>& modelView)
 
 		if (root!=NULL)
 		{
+			glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 			root->updateBB();
 			root->drawBB(modelView);
+			glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 		}
 		
 		
