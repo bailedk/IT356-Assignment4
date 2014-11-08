@@ -46,7 +46,7 @@ public:
 		instances.push_back(in);
 	}
 
-	void addTexture(Texture *tex)
+	void addTexture(Texture* tex)
 	{
 		cout << "Texture " << tex->getName() << " added" << endl;
 		textureMap[tex->getName()] = tex;

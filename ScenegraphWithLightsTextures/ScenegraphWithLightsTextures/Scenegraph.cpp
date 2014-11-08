@@ -46,11 +46,6 @@ Scenegraph::~Scenegraph()
         delete root;
         root = NULL;
     }
-	
-	for (map<string,Texture *>::iterator it=textureMap.begin();it!=textureMap.end();it++)
-	{
-		delete it->second;
-	}
 }
 
 void Scenegraph::initShaderProgram(GLint shaderProgram)

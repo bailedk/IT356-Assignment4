@@ -80,13 +80,14 @@ void View::initialize()
 	projectionLocation = glGetUniformLocation(program,"projection");
 
 	sgraph.initShaderProgram(program);
-
+	
 	string nPath = "white.png";
 	string nNull = "white";
 	Texture *tex = new Texture();
 	tex->createImage(nPath);
 	tex->setName(nNull);
 	sgraph.addTexture(tex);	
+
 }
 
 void View::draw()
